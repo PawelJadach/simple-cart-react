@@ -1,17 +1,17 @@
 .container {
-    padding: 10px;
-    margin-left: auto;
+  padding: 10px;
+  margin-left: auto;
 }
 
 .items {
-    border: 1px solid silver;
-    list-style: none;
-    min-width: 350px;
-    min-height: 50px;
-    padding: 10px;
+  border: 1px solid silver;
+  list-style: none;
+  min-width: 350px;
+  min-height: 50px;
+  padding: 10px;
 }
 
 .list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }

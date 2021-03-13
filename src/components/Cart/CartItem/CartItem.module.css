@@ -1,37 +1,37 @@
 .item {
-    margin: 10px;
-    border-bottom: 1px solid silver;
-    padding-bottom: 7px;
-    display: flex;
-    justify-content: space-between;
+  margin: 10px;
+  border-bottom: 1px solid silver;
+  padding-bottom: 7px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
-    border: 1px solid silver;
-    background-color: white;
-    cursor: pointer;
-    padding: 5px 10px;
-    transition: .2s;
+  border: 1px solid silver;
+  background-color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: .2s;
 }
 
 .button:first-child {
-    border-right: none;
-    margin-left: 20px;
+  border-right: none;
+  margin-left: 20px;
 }
 
 .button:hover {
-    background-color: #eee;
+  background-color: #eee;
 }
 
 .buttonRemove {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .button:disabled {
-    color: silver;
-    cursor: not-allowed;
+  color: silver;
+  cursor: not-allowed;
 }
 
 .button:disabled:hover {
-    background-color: white;
+  background-color: white;
 }
