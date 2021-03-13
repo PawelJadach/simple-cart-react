@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ShopItemInCartPropTypes } from '../../../propTypes';
 import clsx from 'clsx';
@@ -6,17 +6,20 @@ import clsx from 'clsx';
 import styles from './CartItem.module.css';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { checkIsAvailable } from '../../../service/api';
+import { CartContext } from '../../../context/CartContext';
 
-const CartItem = ({ item, isBlocked, addOne, removeOne, removeFromCart, setCount }) => {
-  const debouncedItemCount = useDebounce(item.count, 2000);
+const CartItem = ({ item, isBlocked }) => {
+  const cartContext = useContext(CartContext);
+
+  const debouncedItemCount = useDebounce(item.count, 500);
 
   useEffect(() => {
     async function fetchIsAvailable() {
       const response = await checkIsAvailable(item);
 
       if(response.isError && response.errorType === 'INCORRECT_QUANTITY') {
-        window.alert(`Maksymalna liczba ${item.name} w koszyku to ${item.max}!`)
-        setCount(item.pid, item.min);
+        window.alert(response.message)
+        cartContext.setCount(item.pid, item.min);
       }
     }
     fetchIsAvailable();
@@ -28,7 +31,7 @@ const CartItem = ({ item, isBlocked, addOne, removeOne, removeFromCart, setCount
     if(isMaxInCart) {
       window.alert(`Maksymalna liczba ${product.name} w koszyku to ${product.max}!`)
     } else {
-      addOne(product)
+      cartContext.addOne(product)
     }
   };
 
@@ -38,12 +41,12 @@ const CartItem = ({ item, isBlocked, addOne, removeOne, removeFromCart, setCount
     if(isMinInCart) {
       window.alert(`Minimalna liczba produktu ${product.name} w koszyku to ${product.min}!`)
     } else {
-      removeOne(product)
+      cartContext.removeOne(product)
     }
   };
 
   const handleRemoveFromCart = product => () => {
-    removeFromCart(product)
+    cartContext.removeFromCart(product)
   };
 
   return (
@@ -61,11 +64,7 @@ const CartItem = ({ item, isBlocked, addOne, removeOne, removeFromCart, setCount
 
 CartItem.propTypes = {
   item: ShopItemInCartPropTypes,
-  addOne: PropTypes.func,
-  removeOne: PropTypes.func,
-  removeFromCart: PropTypes.func,
   isBlocked: PropTypes.bool,
-  setCount: PropTypes.func,
 };
 
 export {

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './ProductList.module.css';
 import { AddToCartIcon } from '../../assets/shopping-cart.js';
 import PropTypes from 'prop-types'
 import { ShopItemPropTypes } from '../../propTypes';
+import { CartContext } from '../../context/CartContext';
 
-const ProductList = ({ productList = null, addToCart }) => {
+const ProductList = ({ productList = null }) => {
+  const cartContext = useContext(CartContext);
+
   const handleAddToCart = product => () => {
-    addToCart(product);
+    cartContext.addToCart(product);
   };
 
   if (!productList) {
@@ -37,7 +40,6 @@ const ProductList = ({ productList = null, addToCart }) => {
 
 ProductList.propTypes = {
   productList: PropTypes.arrayOf(ShopItemPropTypes),
-  addToCart: PropTypes.func,
 }
 
 export {
