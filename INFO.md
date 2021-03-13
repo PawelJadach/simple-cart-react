@@ -15,3 +15,9 @@ jednak chciałem pokazać głębsze zrozumienie hooków / używanie contextu itd
 - Nie skupiałem się an wyglądzie elementów więc ograniczyłem stylowanie do minimum, potrafię jednak
 zaprojektować i zakodować schludny, przyjazny dla użytkownika oraz "ładny" wygląd interfejsu
 - Oczywiście rozwiązanie poprawne pod względem responsywności, może na telefonie należało by zmienić nieco wielkość przycisków :)
+
+### URUCHOMIENIE
+- zainstalować zależności
+`npm install`
+- uruchomić projekt
+`npm start`
